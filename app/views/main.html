@@ -1,0 +1,174 @@
+<style type="text/css">
+  body {
+    background-color: rgba(222, 222, 222, 1);
+    font-family: arial
+  }
+
+  .electricity {
+    width: 300px;
+    margin: 100px auto;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 8px #999;
+  }
+
+
+  .top {
+    background-color: rgba(237, 169, 119, 1);
+    padding: 20px;
+  }
+
+  .middle {
+    background-color: rgba(248, 248, 248, 1);
+    padding: 6px;
+  }
+
+  .middle .stat {
+    background-color: rgba(244, 244, 244, 1);
+    border: 1px solid rgba(221, 221, 221, 1);
+    border-radius: 3px;
+  }
+
+  .middle .stat li {
+    padding: 16px 18px;
+  }
+  .middle .stat li:first-child {
+    border-bottom: 1px solid rgba(221, 221, 221, 1);
+  }
+
+  .middle .stat li:last-child {
+    border-bottom: 1px solid rgba(248, 248, 248, 1);
+  }
+
+  .middle .stat li .wrapper {
+    margin-top: 15px;
+    margin-top: 20px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    vertical-align: bottom;
+  }
+
+  .bottom {
+    background-color: rgba(243, 243, 243, 1);
+    padding: 8px;
+    border-top: 1px solid rgba(235, 235, 235, 1);
+  }
+
+  h3 {
+    color: rgba(165, 107, 53, 1);
+    text-shadow: 0 1px rgba(239, 178, 133, 1);
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+
+  h4 {
+    color: rgba(193, 129, 75, 1);
+    text-shadow: 0 1px rgba(239, 177, 131, 1);
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  h5 {
+    color: rgba(180, 180, 180, 1);
+    text-shadow: 0 1px rgba(250, 250, 250, 1);
+    font-size: 0.8em;
+  }
+
+  .number {
+    color: rgba(119, 119, 119, 1);
+    text-shadow: 0 1px rgba(255, 255, 255, 1);
+    font-size: 1.6em;
+    font-weight: bold;
+    font-family: verdana;
+    /*-webkit-flex: 0.25;*/
+    flex: 1;
+  }
+
+  .unit, .percent {
+    color: rgba(119, 119, 119, 1);
+    text-shadow: 0 1px rgba(255, 255, 255, 1);
+    font-weight: bold;
+    font-size: 0.8em;
+    font-family: verdana;
+    margin-left: 3px;
+    position: relative;
+    top: 0.8em;
+  }
+
+  .unit {
+    width: 87px;
+  }
+
+  .percent {
+    -webkit-flex: 0.15;
+  }
+
+  .pie-chart {
+    -webkit-flex: 0.2;
+  }
+
+  .control-arrow {
+    -webkit-flex: 0.1;
+  }
+
+  .sync {
+    color: rgba(193, 193, 193, 1);
+    font-size: 0.6em;
+  }
+
+</style>
+<div class="test"></div>
+<div class="electricity">
+  <div class="top">
+    <div class="title">
+      <h3>ELECTRICITY</h4>
+      <h4>Evergreen Brick Works</h5>
+    </div>
+    <div class="control"></div>
+    <div class="chart"></div>
+  </div>
+  <div class="middle">
+    <ul class="stat">
+      <li>
+        <h5>vs. LEED Standard</h5>
+        <div class="wrapper">
+          <div class="control-arrow">
+            <i class="up active"></i>
+            <i class="down"></i>
+          </div>
+          <div class="number">
+            57.76
+          </div>
+          <div class="unit">kWh</div>
+          <div class="percent">87%</div>
+          <div class="pie-chart"></div>
+        </div>
+      </li>
+      <li>
+        <h5>vs. LEED Standard</h5>
+        <div class="wrapper">
+          <div class="control-arrow">
+            <i class="up"></i>
+            <i class="down active"></i>
+          </div>
+          <div class="number">
+            -3.76
+          </div>
+          <div class="unit">kWh</div>
+          <div class="percent">-17%</div>
+          <div class="pie-chart"></div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <div class="bottom">
+    <div class="switch"></div>
+    <div class="sync">
+      <span>Last update: 7 min ago</span>
+      <i class="sync"></i>
+    </div>
+  </div>
+
+</div>
