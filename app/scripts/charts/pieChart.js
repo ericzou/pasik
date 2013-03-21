@@ -15,26 +15,29 @@ pieChart.controller("PieChartController", ['$scope', function($scope) {
 
   this.initChart = function(element) {
     // hardcode for now
-    width = height = radius = 100
-
+    width = height = 100;
+    radius = 50
+    var colors = ["red", "green"];
     chart = d3.select(element[0])
       .append("svg")
+      .attr("width", width)
+      .attr("height", height)
       .append('g')
-      .attr("class", "pie-chart");
+        .attr("class", "pie-chart")
+        .attr("transform", "translate(50, 50)");
 
-    console.log("-----", chart);
-    
-    pie = d3.layout.pie().value(function(d) { return d.value });
+    pie = d3.layout.pie().value(function(d) { return parseInt(d.value) });
     arc = d3.svg.arc().outerRadius(radius);
-  };
 
-  this.draw = function() {
-    console.log("=-=====", slices);
-    console.log("______", chart);
-    chart.data(pie(slices))
-      .append('g')
-      .attr("class", "slice");
-  }
+    chart.selectAll('.slice')
+      .data(pie(slices))
+      .enter()
+        .append('g')
+        .attr("class", "slice")
+          .append('path')
+          .attr('d', arc)
+          .style('fill', function(d, i){ return colors[i] } );
+  };
 
 }]);
 
@@ -54,8 +57,7 @@ pieChart.directive('slice', function() {
     require: '^pieChart',
     restrict: "AE", 
     link: function(scope, element, attrs, pieChartController) {
-      pieChartController.addSlice(scope);
-      pieChartController.draw();
+      pieChartController.addSlice({ value: attrs.value });
     }
   }
 });
