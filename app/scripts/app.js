@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('pasikApp', [])
+angular.module('pasikApp', ["pasik.charts.pieChart"])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
