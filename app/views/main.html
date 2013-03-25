@@ -15,7 +15,12 @@
 
 </style>
 
-<div class="test"></div>
+<div class="test bar-chart" ng-controller="TestCtrl">
+  <bar-chart>
+    <bar ng-repeat="datum in dataset" value="datum"></bar>
+  </bar-chart>
+</div>
+
 <div class="electricity">
   <div class="top">
     <div class="title">
