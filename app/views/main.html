@@ -9,16 +9,13 @@
   }
 
   .bar-chart rect{
-    stroke: rgba(223, 162, 110, 1) ;
-    stroke-width: 1px;
+    /*stroke: rgba(223, 162, 110, 1) ;
+    stroke-width: 1px;*/
   }
 
 </style>
 
-<div class="test bar-chart" ng-controller="TestCtrl">
-  <bar-chart>
-    <bar ng-repeat="datum in dataset" value="datum"></bar>
-  </bar-chart>
+<div class="test">
 </div>
 
 <div class="electricity">
@@ -72,13 +69,15 @@
     </ul>
   </div>
   <div class="bottom">
-    <div class="switch">
-
-    </div>
     <div class="sync">
       <span>Last update: 7 min ago</span>
       <i class="sync"></i>
     </div>
+    <div class="switch">
+      <button></button>
+      <span class="on"></span>
+    </div>
+
   </div>
 
 </div>

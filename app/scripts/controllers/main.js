@@ -25,7 +25,7 @@ function barChart() {
   var scale =
         d3.scale.linear()
         .domain([0, 10])
-        .range([0, 63]);
+        .rangeRound([0, 63]);
 
   var bars =
         barChart.selectAll("g.bar")
@@ -39,7 +39,6 @@ function barChart() {
       .attr("y", function(d) { return 63 - scale(d); })
       .attr("width", barWidth)
       .attr("height", function(d) { return scale(d);} );
-
 
 }
 
