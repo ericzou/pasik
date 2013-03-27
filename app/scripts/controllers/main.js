@@ -33,6 +33,8 @@ function barChart() {
     { position: 20, value: 5 }
   ];
 
+  var n = dataset.length;
+
 
   var width = 262, height = 63, barWidth = 9, padding = 5;
 
@@ -92,13 +94,9 @@ function barChart() {
 
   }
 
-  var n = 21;
   setInterval(function() {
-    // console.log(dataset);
-
     dataset.shift();
     dataset.push({ position: n, value: Math.round((Math.random()*9+1)) });
-    // console.log(dataset);
     n = n + 1;
     redraw();
   }, 1500);
