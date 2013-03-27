@@ -10,7 +10,29 @@ angular.module('pasikApp')
   });
 
 function barChart() {
-  var dataset = [4, 7, 8, 7, 10, 2, 7, 9, 8, 7, 5, 3, 4, 3, 7, 8, 10, 7, 3, 5]
+  var dataset = [
+    { position: 1, value: 4 },
+    { position: 2, value: 7 },
+    { position: 3, value: 8 },
+    { position: 4, value: 7 },
+    { position: 5, value: 10 },
+    { position: 6, value: 2 },
+    { position: 7, value: 7 },
+    { position: 8, value: 9 },
+    { position: 9, value: 8 },
+    { position: 10, value: 7 },
+    { position: 11, value: 5 },
+    { position: 12, value: 3 },
+    { position: 13, value: 4 },
+    { position: 14, value: 3 },
+    { position: 15, value: 7 },
+    { position: 16, value: 8 },
+    { position: 17, value: 10 },
+    { position: 18, value: 7 },
+    { position: 19, value: 3 },
+    { position: 20, value: 5 }
+  ];
+
 
   var width = 262, height = 63, barWidth = 9, padding = 5;
 
@@ -29,16 +51,57 @@ function barChart() {
 
   var bars =
         barChart.selectAll("g.bar")
-          .data(dataset)
-          .enter()
-            .append('g')
-              .attr("class", "bar");
+          .data(dataset, function(d) { return d.position });
 
-  bars.append("rect")
-      .attr("x", function(d, i) { return (barWidth + padding)* i })
-      .attr("y", function(d) { return 63 - scale(d); })
-      .attr("width", barWidth)
-      .attr("height", function(d) { return scale(d);} );
+  bars.enter()
+      .append('g')
+        .attr("class", "bar")
+        .append("rect")
+          .attr("x", function(d, i) { return (barWidth + padding)* i })
+          .attr("y", function(d) { return 63 - scale(d.value); })
+          .attr("width", barWidth)
+          .attr("height", function(d) { return scale(d.value);} );
+
+  bars.exit()
+      .remove();
+
+  function redraw(){
+    var baz
+
+    baz = barChart.selectAll('rect')
+      .data(dataset, function(d) { return d.position; });
+
+    baz.transition()
+        .duration(1000)
+        .attr("x", function(d, i) { return (barWidth + padding) * i });
+
+    baz.exit()
+      .transition()
+      .duration(1000)
+      .attr('x', function(d, i) { return (barWidth + padding) * (i-1) })
+      .remove();
+
+    baz.enter()
+      .append('g')
+        .attr("class", "bar")
+        .append("rect")
+          .attr("x", function(d, i) { return (barWidth + padding)* i })
+          .attr("y", function(d) { return 63 - scale(d.value); })
+          .attr("width", barWidth)
+          .attr("height", function(d) { return scale(d.value);} );
+
+  }
+
+  var n = 21;
+  setInterval(function() {
+    // console.log(dataset);
+
+    dataset.shift();
+    dataset.push({ position: n, value: Math.round((Math.random()*9+1)) });
+    // console.log(dataset);
+    n = n + 1;
+    redraw();
+  }, 1500);
 
 }
 
