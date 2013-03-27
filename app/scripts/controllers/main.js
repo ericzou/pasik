@@ -6,11 +6,17 @@ angular.module('pasikApp')
     $scope.foo = 87
     $scope.bar = 21;
 
+    $scope.first = 57.76
+    $scope.second = -3.76;
+
+
     $timeout(function randomize() {
       $scope.foo = Math.round(Math.random() * 80 + 10);
       $scope.bar = Math.round(Math.random() * 80 + 10);
-      $timeout(randomize, 2000);
-    }, 2000);
+      $scope.first = (Math.random() * 80 + 10).toPrecision(4);
+      $scope.second = (Math.random() * 80 + 10).toPrecision(4);
+      $timeout(randomize, 10000);
+    }, 5000);
 
   });
 
