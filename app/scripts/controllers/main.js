@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('pasikApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Testacular'
-    ];
+  .controller('MainCtrl', function ($scope, $timeout) {
+
+    $scope.foo = 87
+    $scope.bar = 21;
+
+    $timeout(function randomize() {
+      $scope.foo = Math.round(Math.random() * 80 + 10);
+      $scope.bar = Math.round(Math.random() * 80 + 10);
+      $timeout(randomize, 2000);
+    }, 2000);
+
   });
 
 function barChart() {

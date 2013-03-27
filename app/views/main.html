@@ -34,10 +34,10 @@
             57.76
           </div>
           <div class="unit">kWh</div>
-          <div class="percent">87%</div>
+          <div class="percent">{{foo}}%</div>
           <pie-chart>
-            <slice value="13"></slice>
-            <slice value="87"></slice>
+            <slice value="foo"></slice>
+            <slice value="100 - foo"></slice>
           </pie-chart>
         </div>
       </li>
@@ -52,10 +52,10 @@
             -3.76
           </div>
           <div class="unit">kWh</div>
-          <div class="percent">-17%</div>
+          <div class="percent">{{bar}}%</div>
           <pie-chart>
-            <slice value="83"></slice>
-            <slice value="-21"></slice>
+            <slice value="bar"></slice>
+            <slice value="100-bar"></slice>
           </pie-chart>
         </div>
       </li>

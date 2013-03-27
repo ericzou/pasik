@@ -5,12 +5,12 @@ pieChart = angular.module("pasik.charts.pieChart", []);
 pieChart.controller("PieChartController", ['$scope', function($scope) {
   var width, height, radius;
   var pie, arc, chart;
-
-  var slices = $scope.slices = [];
   var pieChart;
 
+  this.slices = [];
+
   this.addSlice = function(slice) {
-    slices.push(slice);
+    this.slices.push(slice);
   };
 
   this.initChart = function(element) {
@@ -25,16 +25,22 @@ pieChart.controller("PieChartController", ['$scope', function($scope) {
         .attr("class", "pie-chart")
         .attr("transform", "translate(13, 13)");
 
-    pie = d3.layout.pie().value(function(d) { return parseInt(d.value) });
+    pie = d3.layout.pie().value(function(d) { return d; });
     arc = d3.svg.arc().outerRadius(radius);
 
     chart.selectAll('.slice')
-      .data(pie(slices))
+      .data(pie(this.slices.map( function(slice){ return slice.value; })))
       .enter()
         .append('g')
         .attr("class", "slice")
           .append('path')
           .attr('d', arc);
+  };
+
+  this.redraw = function() {
+    chart.selectAll('.slice path')
+      .data(pie(this.slices.map( function(slice){ return slice.value; })))
+      .attr('d', arc);
   };
 
 }]);
@@ -54,8 +60,15 @@ pieChart.directive('slice', function() {
   return {
     require: '^pieChart',
     restrict: "AE",
+    scope: {
+      value: "="
+    },
     link: function(scope, element, attrs, pieChartController) {
-      pieChartController.addSlice({ value: attrs.value });
+      scope.$watch('value', function() {
+        pieChartController.redraw();
+        // console.log("scope: ", scope.value);
+      });
+      pieChartController.addSlice(scope);
     }
   }
 });
