@@ -1,6 +1,8 @@
-barChart = angular.module("pasik.charts.barChart", []);
+'use strict';
 
-barChart.controller("BarChartController", function() {
+var barChart = angular.module('pasik.charts.barChart', []);
+
+barChart.controller('BarChartController', function () {
   var barChart;
 
   var barWidth = 9, padding = 5;
@@ -13,7 +15,7 @@ barChart.controller("BarChartController", function() {
 
   this.bars = [];
 
-  this.addBar = function(bar) {
+  this.addBar = function (bar) {
     var i;
 
     i = this.bars.length;
@@ -24,54 +26,54 @@ barChart.controller("BarChartController", function() {
     this.bars.push(bar);
   };
 
-  this.setupChart = function(element) {
+  this.setupChart = function (element) {
 
     var width = 262, height = 63, barWidth = 9, padding = 5;
 
     var max = 63;
 
     barChart = d3.select(element[0])
-          .attr("width", width)
-          .attr("height", height);
+          .attr('width', width)
+          .attr('height', height);
 
-    barChart.selectAll(".bar")
+    barChart.selectAll('.bar')
       .data(this.bars)
       .enter()
         .append('g')
-          .attr("class", "bar")
+          .attr('class', 'bar')
           .append('rect')
-            .attr("x", function(d, i) { return i * (width + padding) })
-            .attr("y", function(d) { return max - d * yscale })
-            .attr("width", width)
-            .attr("height", function(d) { return d * yscale });
+            .attr('x', function (d, i) { return i * (width + padding); })
+            .attr('y', function (d) { return max - d * yscale; })
+            .attr('width', barWidth)
+            .attr('height', function (d) { return d * yscale; });
   };
 });
 
-barChart.directive('barChart', function() {
+barChart.directive('barChart', function () {
   return {
     restrict: 'AE',
     transclude: true,
     controller: 'BarChartController',
     replace: true,
-    templateUrl: "templates/charts/bar-chart.html",
+    templateUrl: 'templates/charts/bar-chart.html',
     scope: {},
-    link: function(scope, element, attrs, controller) {
+    link: function (scope, element, attrs, controller) {
       controller.setupChart(element);
     }
-  }
+  };
 });
 
-barChart.directive('bar', function() {
+barChart.directive('bar', function () {
   return {
     restrict: 'AE',
     require: '^barChart',
     replace: true,
-    templateUrl: "templates/charts/bar.html",
+    templateUrl: 'templates/charts/bar.html',
     scope: {
       value: '='
     },
-    link: function(scope, element, attrs, controller) {
+    link: function (scope, element, attrs, controller) {
       controller.addBar(scope);
     }
-  }
+  };
 });

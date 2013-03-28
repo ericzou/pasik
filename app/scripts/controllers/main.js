@@ -3,24 +3,24 @@
 angular.module('pasikApp')
   .controller('MainCtrl', function ($scope, $timeout) {
 
-    $scope.foo = 87
+    $scope.foo = 87;
     $scope.bar = 21;
 
-    $scope.first = 57.76
+    $scope.first = 57.76;
     $scope.second = -3.76;
 
 
-    $timeout(function randomize() {
+    $timeout(function  randomize() {
       $scope.foo = Math.round(Math.random() * 80 + 10);
       $scope.bar = Math.round(Math.random() * 80 + 10);
       $scope.first = (Math.random() * 80 + 10).toPrecision(4);
       $scope.second = (Math.random() * 80 + 10).toPrecision(4);
-      $timeout(randomize, 10000);
+      $timeout(randomize, 5000);
     }, 5000);
 
   });
 
-function barChart() {
+function setupBarChart() {
   var dataset = [
     { position: 1, value: 4 },
     { position: 2, value: 7 },
@@ -50,12 +50,12 @@ function barChart() {
   var width = 262, height = 63, barWidth = 9, padding = 5;
 
   var barChart =
-    d3.select(".bar-chart")
-      .append("svg:svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-          .attr("class", 'bar-chart');
+    d3.select('.bar-chart')
+      .append('svg:svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+          .attr('class', 'bar-chart');
 
   var scale =
         d3.scale.linear()
@@ -63,58 +63,58 @@ function barChart() {
         .rangeRound([0, 63]);
 
   var bars =
-        barChart.selectAll("g.bar")
-          .data(dataset, function(d) { return d.position });
+        barChart.selectAll('g.bar')
+          .data(dataset, function (d) { return d.position; });
 
   bars.enter()
       .append('g')
-        .attr("class", "bar")
-        .append("rect")
-          .attr("x", function(d, i) { return (barWidth + padding)* i })
-          .attr("y", function(d) { return 63 - scale(d.value); })
-          .attr("width", barWidth)
-          .attr("height", function(d) { return scale(d.value);} );
+        .attr('class', 'bar')
+        .append('rect')
+          .attr('x', function (d, i) { return (barWidth + padding) * i; })
+          .attr('y', function (d) { return 63 - scale(d.value); })
+          .attr('width', barWidth)
+          .attr('height', function (d) { return scale(d.value); });
 
   bars.exit()
       .remove();
 
-  function redraw(){
-    var baz
+  function redraw() {
+    var baz;
 
     baz = barChart.selectAll('rect')
-      .data(dataset, function(d) { return d.position; });
+      .data(dataset, function (d) { return d.position; });
 
     baz.transition()
         .duration(1000)
-        .attr("x", function(d, i) { return (barWidth + padding) * i });
+        .attr('x', function (d, i) { return (barWidth + padding) * i; });
 
     baz.exit()
       .transition()
       .duration(1000)
-      .attr('x', function(d, i) { return (barWidth + padding) * (i-1) })
+      .attr('x', function (d, i) { return (barWidth + padding) * (i - 1); })
       .remove();
 
     baz.enter()
       .append('g')
-        .attr("class", "bar")
-        .append("rect")
-          .attr("x", function(d, i) { return (barWidth + padding)* i })
-          .attr("y", function(d) { return 63 - scale(d.value); })
-          .attr("width", barWidth)
-          .attr("height", function(d) { return scale(d.value);} );
+        .attr('class', 'bar')
+        .append('rect')
+          .attr('x', function (d, i) { return (barWidth + padding) * i; })
+          .attr('y', function (d) { return 63 - scale(d.value); })
+          .attr('width', barWidth)
+          .attr('height', function (d) { return scale(d.value); });
 
   }
 
-  setInterval(function() {
+  setInterval(function () {
     dataset.shift();
-    dataset.push({ position: n, value: Math.round((Math.random()*9+1)) });
+    dataset.push({ position: n, value: Math.round((Math.random() * 9 + 1)) });
     n = n + 1;
     redraw();
   }, 1500);
 
 }
 
-window.onload = function() {
-  barChart();
+window.onload = function () {
+  setupBarChart();
 };
 
