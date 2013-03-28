@@ -1,0 +1,77 @@
+<style type="text/css">
+  .bar-chart {
+    margin-top: 16px;
+  }
+
+  .bar-chart svg {
+    position: relative;
+    top: 3px;
+  }
+</style>
+
+<div class="test">
+</div>
+
+<div class="electricity">
+  <div class="top">
+    <div class="title">
+      <h3>ELECTRICITY
+      <h4>Evergreen Brick Works
+    </h4></h3></div>
+    <div class="control"></div>
+    <div class="bar-chart"></div>
+  </div>
+  <div class="middle">
+    <ul class="stat">
+      <li>
+        <h5>vs. LEED Standard</h5>
+        <div class="wrapper">
+          <div class="control-arrow">
+            <i class="up active"></i>
+            <i class="down"></i>
+          </div>
+          <div class="number">
+            {{first}}
+          </div>
+          <div class="unit">kWh</div>
+          <div class="percent">{{foo}}%</div>
+          <pie -chart="">
+            <slice value="foo"></slice>
+            <slice value="100 - foo"></slice>
+          </pie>
+        </div>
+      </li>
+      <li>
+        <h5>vs. Our Average</h5>
+        <div class="wrapper">
+          <div class="control-arrow">
+            <i class="up"></i>
+            <i class="down active"></i>
+          </div>
+          <div class="number">
+            {{second}}
+          </div>
+          <div class="unit">kWh</div>
+          <div class="percent">{{bar}}%</div>
+          <pie -chart="">
+            <slice value="bar"></slice>
+            <slice value="100-bar"></slice>
+          </pie>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <div class="bottom">
+    <div class="sync">
+      <span>Last update: 7 min ago</span>
+      <i class="sync"></i>
+    </div>
+    <div class="switch">
+      <button></button>
+      <span class="on"></span>
+    </div>
+
+  </div>
+
+</div>
