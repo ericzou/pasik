@@ -13,7 +13,7 @@ switchModule.controller('SwitchController', ['$scope', function ($scope) {
     } else {
       console.log("switch on");
       this.state = 'on';
-    }
+    };
   };
 
 }]);

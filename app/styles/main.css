@@ -155,15 +155,14 @@
     border: none;
     box-shadow: 1px 0 rgba(166, 166, 166, 1);
     vertical-align: top;
+    position: absolute;
   }
 
   .switch button.on{
-    position: absolute;
     left: 0;
   }
 
   .switch button.off{
-    position: absolute;
     right: 0;
   }
 
