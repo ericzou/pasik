@@ -1,16 +1,6 @@
 <style type="text/css">
-  .bar-chart {
-    margin-top: 16px;
-  }
 
-  .bar-chart svg {
-    position: relative;
-    top: 3px;
-  }
 </style>
-
-<div class="test">
-</div>
 
 <div class="electricity">
   <div class="top">
@@ -19,7 +9,8 @@
       <h4>Evergreen Brick Works
     </h4></h3></div>
     <div class="control"></div>
-    <div class="bar-chart"></div>
+    <bar -chart="" width="262" height="63" bar-width="9" padding="5" bind="dataset">
+    </bar>
   </div>
   <div class="middle">
     <ul class="stat">
@@ -35,10 +26,10 @@
           </div>
           <div class="unit">kWh</div>
           <div class="percent">{{foo}}%</div>
-          <pie-chart>
+          <pie -chart="">
             <slice value="foo"></slice>
             <slice value="100 - foo"></slice>
-          </pie-chart>
+          </pie>
         </div>
       </li>
       <li>
@@ -53,10 +44,10 @@
           </div>
           <div class="unit">kWh</div>
           <div class="percent">{{bar}}%</div>
-          <pie-chart>
+          <pie -chart="">
             <slice value="bar"></slice>
             <slice value="100-bar"></slice>
-          </pie-chart>
+          </pie>
         </div>
       </li>
 
@@ -67,11 +58,7 @@
       <span>Last update: 7 min ago</span>
       <i class="sync"></i>
     </div>
-    <div class="switch">
-      <button></button>
-      <span class="on"></span>
-    </div>
-
+    <switch></switch>
   </div>
 
 </div>
