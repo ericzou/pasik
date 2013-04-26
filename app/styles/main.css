@@ -18,6 +18,12 @@
     overflow: hidden;
   }
 
+  .bar-chart {
+    margin-top: 16px;
+    position: relative;
+    top: 3px;
+  }
+
   .bar-chart .bar {
     fill: rgba(255, 224, 202, 1);
     margin-left: 5px;
