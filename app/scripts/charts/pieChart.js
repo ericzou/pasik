@@ -24,7 +24,7 @@ pieChart.controller('PieChartController', [function () {
         .attr('class', 'pie-chart')
         .attr('transform', 'translate(13, 13)');
 
-    pie = d3.layout.pie().value(function (d) { return d; });
+    pie = d3.layout.pie().value(function (d) { return d; }).sort(null);
     arc = d3.svg.arc().outerRadius(radius);
 
     chart.selectAll('.slice')
