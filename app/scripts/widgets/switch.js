@@ -2,18 +2,18 @@
 
 var switchModule = angular.module('pasik.widgets.switch', []);
 
-switchModule.controller('SwitchController', ['$scope', function ($scope) {
+switchModule.controller('SwitchController', [function () {
 
   this.state = 'on';
 
-  this.toggleState = function() {
+  this.toggleState = function () {
     if (this.state === 'on') {
-      console.log("switch off");
+      console.log('switch on');
       this.state = 'off';
     } else {
-      console.log("switch on");
+      console.log('switch on');
       this.state = 'on';
-    };
+    }
   };
 
 }]);

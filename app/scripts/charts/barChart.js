@@ -7,26 +7,26 @@ barChart.controller('BarChartController', function () {
       width, height, barWidth, padding, unitWidth,
       yscale;
 
-  function onEnter (bars) {
-    bars.enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function (d, i) { return i * ( unitWidth + 1 ); })
-      .attr("y", function (d) { return height - yscale(d); })
-      .attr("height", function (d) { return yscale(d); })
-      .attr("width", barWidth);
+  function onEnter(bars) {
+    bars.enter().append('rect')
+      .attr('class', 'bar')
+      .attr('x', function (d, i) { return i * (unitWidth + 1); })
+      .attr('y', function (d) { return height - yscale(d); })
+      .attr('height', function (d) { return yscale(d); })
+      .attr('width', barWidth);
   }
 
-  function onUpdate (bars) {
+  function onUpdate(bars) {
     bars.transition()
       .duration(1000)
-      .attr("x", function (d, i) { return i * unitWidth; });
+      .attr('x', function (d, i) { return i * unitWidth; });
   }
 
-  function onExit (bars) {
+  function onExit(bars) {
     bars.exit()
       .transition()
       .duration(1000)
-      .attr("x",  unitWidth * -1 )
+      .attr('x', unitWidth * -1)
       .remove();
   }
 
@@ -44,17 +44,17 @@ barChart.controller('BarChartController', function () {
       .domain([0, 10])
       .rangeRound([0, height]);
 
-    barChart = d3.select(element).append("svg")
-      .attr("class", 'bar-chart')
+    barChart = d3.select(element).append('svg')
+      .attr('class', 'bar-chart')
       .attr('width', width)
       .attr('height', height)
-      .append("g")
+      .append('g');
 
     barChart.selectAll('rect')
-      .data(dataset, function (d) { return d })
+      .data(dataset, function (d) { return d; })
       .enter()
         .append('rect')
-          .attr("class", "bar")
+          .attr('class', 'bar')
           .attr('x', function (d, i) { return i * unitWidth; })
           .attr('y', function (d) { return height - yscale(d); })
           .attr('width', barWidth)
@@ -66,7 +66,7 @@ barChart.controller('BarChartController', function () {
     onEnter(bars);
     onUpdate(bars);
     onExit(bars);
-  }
+  };
 
 });
 
@@ -91,7 +91,7 @@ barChart.directive('barChart', function () {
         dataset: scope.dataset
       });
 
-      scope.$watch("dataset", function (newVal, oldVal) {
+      scope.$watch('dataset', function () {
         controller.rerender(scope.dataset);
       }, true);
     }
