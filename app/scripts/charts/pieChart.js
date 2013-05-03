@@ -33,13 +33,27 @@ pieChart.controller('PieChartController', [function () {
         .append('g')
         .attr('class', 'slice')
           .append('path')
-          .attr('d', arc);
+          .attr('d', arc)
+          .each(function (d) {
+            this._current = d;
+          });
   };
+
+  function arcTween(a) {
+    var i = d3.interpolate(this._current, a);
+    this._current = i(0);
+    return function (t) {
+      return arc(i(t));
+    };
+  }
 
   this.redraw = function () {
     chart.selectAll('.slice path')
       .data(pie(this.slices.map(function (slice) { return slice.value; })))
-      .attr('d', arc);
+      .transition()
+        .duration(750)
+        .attrTween("d", arcTween)
+
   };
 
 }]);
